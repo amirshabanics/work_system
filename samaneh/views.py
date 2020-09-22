@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import Work
 
 from django.core.paginator import Paginator
@@ -28,3 +28,8 @@ def work_detail(request, pk):
         'work': work
     }
     return render(request, 'work_detail.html', content)
+
+
+def about(request):
+    with open('ReadMe.md', 'r') as file:
+        return HttpResponse(file.readlines())
