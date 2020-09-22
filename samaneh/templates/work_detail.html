@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ work.name }}</title>
+</head>
+<body>
+<h1 style="text-align: center">samaneh anjam kar</h1>
+<br>
+<h2 style="text-align: left">{{ work.name }}</h2>
+<hr>
+<pre style="text-align: left">
+    {{ work.estimate }} days        {{ work.price }} toman      created on: {{ work.created }}
+</pre>
+<br>
+<p style="text-align: left">
+    describe:<br>
+    {{ work.description }}
+</p>
+<br><br><br>
+<a href="{% url 'work_list' %}">back</a>
+</body>
+</html>

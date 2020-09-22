@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>samaneh</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>name</th>
+        <th>price</th>
+        <th>estimate</th>
+        <th>user</th>
+    </tr>
+    {% for work in works %}
+        <tr>
+            <td>{{ work.name }}</td>
+            <td>{{ work.price }}</td>
+            <td>{{ work.estimate }}</td>
+            <td>{{ work.user.email }}</td>
+            <td><a href="{% url  'work_detail'  work.pk%}">details</a></td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
