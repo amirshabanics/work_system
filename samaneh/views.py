@@ -33,3 +33,7 @@ def work_detail(request, pk):
 def about(request):
     with open('ReadMe.md', 'r') as file:
         return HttpResponse(file.readlines())
+
+
+def rules(request):
+    return HttpResponse("1. don't have ruele")

@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>works</title>
+
     <style>
+        body{
+            background-color: bisque;
+        }
         table, th, td {
-            border: 1px solid black;
+            border: 1px black;
+            border-bottom-style: solid;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th , td{
+            text-align: center;
+        }
+        tr:hover{
+            background-color: aliceblue;
+        }
+        tr,th:valid{
+            background-color: cornsilk;
         }
     </style>
 </head>
@@ -45,8 +63,15 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
+
+</div>
+<br><hr>
+<div>
     <span class="about">
         <a href="{% url 'about' %}">about</a>
+    </span>
+    <span class="rules">
+        <a href="{% url 'rules' %}">about</a>
     </span>
 </div>
 </body>
