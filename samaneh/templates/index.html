@@ -1,26 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>samaneh</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<table>
-    <tr>
-        <th>name</th>
-        <th>price</th>
-        <th>estimate</th>
-        <th>user</th>
-    </tr>
-    {% for work in works %}
-        <tr>
-            <td>{{ work.name }}</td>
-            <td>{{ work.price }}</td>
-            <td>{{ work.estimate }}</td>
-            <td>{{ work.user.email }}</td>
-            <td><a href="{% url  'work_detail'  work.pk%}">details</a></td>
-        </tr>
-    {% endfor %}
-</table>
+<div class="container-fluid">
+    <div class="row">
+        <div id="main-content" class="col-md-9">
+            <h1> Work System</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>estimate</th>
+                    <th>user</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for work in page_obj %}
+                    <tr>
+                        <td>{{ work.name }}</td>
+                        <td>{{ work.price }}</td>
+                        <td>{{ work.estimate }}</td>
+                        <td>{{ work.user.email }}</td>
+                        <td><a href="{% url  'work_detail'  work.pk %}">details</a></td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+{#            <div id="tasks-paginator">#}
+{#                <ul class="pagination">#}
+{#                    <li class="active"><a href="?page=1">1</a></li>#}
+{#                    <li><a href="?page=1">1</a></li>#}
+{#                    <li><a href="?page=1">2</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+            <div class="pagination" id="tasks-paginator">
+                <ul class="step-links pagination">
+                    {% if page_obj.has_previous %}
+                       <li> <a href="?page=1">&laquo; first</a></li>
+                        <li><a href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                    {% endif %}
+                    <li class="current active">
+                        <li><a >{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+{#                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+                    </li>
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">next</a></li>
+                        <li><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3> Log In </h3>
+            <form>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="email">
+                </div>
+                <button class="btn btn-default btn-block">log in</button>
+            </form>
+            <hr/>
+            <h3>Sign In</h3>
+            <form>
+                <div class="form-group">
+                    <input name="username" maxlength="100" class="form-control" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <input name="email" class="form-control" placeholder="email" type="email">
+                </div>
+                <div class="form-group">
+                    <input name="password" class="form-control" placeholder="pass" type="password">
+                </div>
+                <div class="form-group">
+                    <input name="password_rpt" class="form-control" placeholder="confirm pass" type="password">
+                </div>
+                <div class="form-group">
+                    <label><input name="master" type="checkbox">admin</label>
+                </div>
+                <button class="btn btn-default btn-block">sign in</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <hr/>
+        <span> about</span>
+        <span>rules</span>
+    </footer>
+</div>
 </body>
 </html>
